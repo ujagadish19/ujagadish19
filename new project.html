@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dynamic Project Gallery</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7; 
+        }
+
+        .gallery-title {
+            font-size: 2.5em;
+            margin-top: 50px; 
+            margin-bottom: 30px;
+            font-weight: bold; 
+            color: #333; 
+        }
+
+        .class-works {
+            font-size: 1.4em; 
+            margin-bottom: 20px;
+            text-align: center;
+            color: #555; 
+        }
+
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background-color: #e8e8e8; 
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+
+        .project-button {
+            padding: 12px 25px;
+            margin: 0 15px;
+            border: none;
+            cursor: pointer;
+            background-color: #f0f0f0; 
+            border-radius: 8px;
+            font-size: 1.1em; 
+            transition: background-color 0.3s ease;
+            font-weight: 600; 
+        }
+
+        .project-button.active {
+            background-color: #d0d0d0; 
+        }
+
+        .project-button.task1-active {
+            background-color: red;
+            color: white;
+        }
+
+        .project-button.task2-active {
+            background-color: green;
+            color: white;
+        }
+
+        .project-button.task3-active {
+            background-color: blue;
+            color: white;
+        }
+
+        .project-button.task4-active {
+            background-color: orange;
+            color: white;
+        }
+
+        .project-content {
+            width: 80%; 
+            max-width: 800px; 
+            min-height: 300px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 30px; 
+            background-color: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+            text-align: center; 
+        }
+
+        .default-message {
+            font-size: 1.8em; 
+            color: #444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gallery-title">Dynamic Project Gallery</div>
+
+    <div class="class-works">Class Works</div>
+
+    <div class="project-buttons">
+        <button class="project-button" data-project="task1">Project 1</button>
+        <button class="project-button" data-project="task2">Project 2</button>
+        <button class="project-button" data-project="task3">Project 3</button>
+        <button class="project-button" data-project="task4">Project 4</button>
+    </div>
+
+    <div class="project-content" id="display-area">
+        <div class="default-message">Click a Project to display it here.</div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.project-button');
+        const displayArea = document.getElementById('display-area');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const project = button.dataset.project;
+
+                buttons.forEach(btn => {
+                    btn.classList.remove('active', 'task1-active', 'task2-active', 'task3-active', 'task4-active');
+                });
+
+                button.classList.add('active', `${project}-active`);
+
+                if (project === 'task1') {
+                    displayArea.style.backgroundColor = "red";
+                    displayArea.innerHTML = '<div class="default-message" style="color: white;">You selected Project 1</div>';
+                } else if (project === 'task2') {
+                    displayArea.style.backgroundColor = "green";
+                    displayArea.innerHTML = '<div class="default-message" style="color: white;">You selected Project 2</div>';
+                } else if (project === 'task3') {
+                    displayArea.style.backgroundColor = "blue";
+                    displayArea.innerHTML = '<div class="default-message" style="color: white;">You selected Project 3</div>';
+                } else if (project === 'task4') {
+                    displayArea.style.backgroundColor = "orange";
+                    displayArea.innerHTML = '<div class="default-message" style="color: white;">You selected Project 4</div>';
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
